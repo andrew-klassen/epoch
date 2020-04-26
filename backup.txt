@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+sync 
+
+# disable file caching for disk
+# mount -o remount,sync /
+# mount -o remount /
+# mount -a
+
+mount -f -o remount,ro /
+dd if=/dev/sda bs=64K | split -a 3 -d -b 1G - ./backup-1.img && sync
+mount -f -o remount,rw /
